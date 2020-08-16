@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <title>Full Stack 101</title>
+    <!-- Syntax highlighting for code: -->
+    <!-- <link rel="stylesheet" href="assets/highlight/styles/sunburst.css"> -->
+    <link rel="stylesheet" href="assets/highlight/styles/monokai.css">
+    <script src="assets/highlight/highlight.pack.js"></script>
+    <!-- FontAwesome: -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Google font: -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i" rel="stylesheet">
+    <!-- Our stylesheet: -->
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <!-- Thanks for stopping by!! -->
+<header>
+    <div class="header-wrapper">
+        <div class="logo">
+            <img src="assets/juno-logo.png" alt="Juno College logo">
+        </div>
+        <h1>Full Stack 101</h1>
+        <div class="wifi-wait">
+            <!-- <div class="wifi">
+                <div class="wifi-text">
+                    <h2 class="header-h2">Wifi</h2>
+                    <div class="wifi-info">
+                        <div class="wifi-left">
+                            <p>Network:</p>
+                            <p>Password:</p>
+                        </div>
+                        <div class="wifi-right">
+                            <p>Junocollege</p>
+                            <p>Thisisjunocollege</p>
+                        </div>
+                    </div>
+                </div>
+                <img src="assets/rip-left.png" aria-hidden="true">
+            </div> -->
+            <div class="wait">
+                <div class="wait-text">
+                    <h2 class="header-h2">While you wait</h2>
+                    <p>Please sign up for a free <a href="https://repl.it/">Repl.it Account</a></p>
+                    <p>Please download and install <a href="https://insomnia.rest/">Insomnia</a></p>
+                </div>
+                <img src="assets/rip-right.png" aria-hidden="true">
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="header-rip">
+    <img src="assets/header-rip.png" aria-hidden="true">
+</div>
+
+<main>
+    <aside>
+        <nav>
+            <ul class="aside-menu">
+                <li><a href="#tools">Tools</a>
+                    <ul>
+                        <li><a href="#browsers">Browsers</a></li>
+                        <li><a href="#replit">Repl.it</a></li>
+                        <li><a href="#restclient">Insomnia</a></li>
+                    </ul>
+                </li>
+                <li><a href="#what_is_fs">What is Full-Stack</a></li>
+                <li><a href="#nodejs">Intro to NodeJS</a></li>
+                <li><a href="#express">Express Library</a>
+                    <ul>
+                        <li><a href="#creating_our_first_app">Application</a></li>
+                        <li><a href="#httpmethods">HTTP Methods</a></li>
+                        <li><a href="#insomnia">Insomnia</a></li>
+                    </ul>
+                </li>
+                <li><a href="#createanapp">Creating an App</a>
+                    <ul>
+                        <li><a href="#postendpoint">POST</a></li>
+                        <li><a href="#frontendrequests">Front-end</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <img src="assets/aside-rip.png" aria-hidden="true">
+    </aside>
+
+<section class="wrapper">
+
+    <h2 class="first accent">Welcome to Juno College</h2>
+    <p>We’ve been teaching people to code since 2012, and we’ve mastered pairing the perfect students with the perfect material and learning environment. How do we know you’ll love Juno?</p><a href="https://junocollege.com/reviews/">Don't just take our word for it.</a>
+
+    <h2>What We're Going to Cover</h2>
+    <p>The goal of this workshop is to introduce basic concepts of creating a NodeJS/Express application.</p>
+    <p>We're going to write a web server which accepts and responds to incoming requests. We'll see how to integrate our web server with a small front-end application.</p>
+    <p class="bor-bottom">There's lots to learn about full-stack web development, and this is only the first step! To learn more, sign up for our <a href="https://junocollege.com/course/full-stack-masterclass">Full-Stack Masterclass</a> course.</p>
+
+    <h2 class="first heading hook" id="tools">Getting Started: Tools</h2>
+
+    <h3 id="browsers" class="hook">Web Browsers</h3>
+    <p>The main functionality of the browser is to present a web resource in the browser window. We're going to be writing our NodeJS code using an online editor, so a browser will be very important.</p>
+    <p>Choose a modern, evergreen, web browser that supports current web standards. Some example of evergreen browsers include Firefox and Chrome.</p>
+
+    <h3 id="replit" class="hook">Repl.it</h3>
+    <p>We're going to use a free online IDE (integrated development environment) to speed up learning NodeJS today. <a
+            href="http://repl.it/" target="_blank">Let's sign up for an account!</a></p>
+
+    <h3 class="hook" id="restclient">Insomnia</h3>
+    <p>We need to be able to make requests to our server, and easily see the response. To do this, we're going to make use of what's called a REST client.</p>
+    <p>Download and install the <a href="https://insomnia.rest" target="_blank">Insomnia REST client</a>.</p>
+
+    <!-- What is FullStack Development -->
+    <h2 class="heading hook" id="what_is_fs">What is Full-Stack Development?</h2>
+    <p>Full-stack development speaks to when a developer has experience working in the front-end and back-end aspects of the code base.</p>
+    <p>Often times this will extend to working with databases and data structures.</p>
+    <img src="./assets/fs-be-diagram.jpg" alt="a diagram explaining the flow of fullstack development" aria-hidden="true">
+    <p />
+    <p>A single-page web application has a specific flow to it. Generally, it will have a robust Front-End component (React, VueJS, Angular) and that front-end code will make requests to a web server.<p>
+    <p>The server will then interact with a Database after receiving a request, and then respond to the requester with information.</p>
+    <p>The expectation of a full-stack developer is to have the understanding or ability to contribute to all aspects of this flow, be it the front-end, back-end, or database and data structures.</p>
+    <p>Often times a full-stack developer will have a specialization within these domains, but the expectation is that all can be worked on to varying degrees.</p>
+    <p>In this class we'll be creating a web application using NodeJS, but a server can exist in many languages (PHP, Java, Golang, Rust, Python, etc.).</p>
+
+    <!-- Intro to NodeJS -->
+    <h2 id="nodejs" class="heading hook">Intro to NodeJS</h2>
+    <p>NodeJS is a sever-side JavaScript programming language. This differs from the JavaScript we're familiar with in the browser, though there is a lot of overlap syntactically.</p>
+    <p>The JavaScript which exists in the browser is specific for that environment, and has access to APIs and libraries which are specifically concerned
+             with browser interactions (fetch API, computer audio API, ge-location API, you can see the whole list <a href="https://developer.mozilla.org/en-US/docs/Web/API" target="_blank">here</a>).</p>
+    <p>NodeJS, however, aims to be more agnostic of purpose.</p>
+    <p>It is intended to be a general purpose programming language and the libraries that exist within it are more oriented toward general computer programming goals as opposed
+         to browser specific goals. As such, it has access to APIs and libraries concerning the operating system, encryption, command line options, and many more. You can see the whole list <a href="https://nodejs.org/dist/latest-v12.x/docs/api/" taget="_blank">here</a>.</p>
+    <h3 class="accent">Let's write some node JS</h3>
+    <p>We'll be using Repl.it for our code-along today. Go ahead and open <a href="https://repl.it/@GarrettLevine/Juno-First-Node" target="_blank">this repl</a>, and then fork it into your own account.</p>
+
+    <p>As our first task, let's initialize a variable and then log it out.</p>
+    <pre><code class="js">
+        // 1. Initialize a variable
+        const item = 'umbrella';
+        // 2. log out the variable
+        console.log(item);
+        // 'umbrella'
+    </code></pre>
+    <p>You can see that code we write in NodeJS it identical to what we may write browser JavaScript.</p>
+    <p>Let's warm up a little bit more practicing some familiar JavaScript methods concerning arrays and array interactions.</p>
+    <pre><code class="js">
+        // 3. create an array of fruits
+        const fruits = ['apple', 'banana', 'orange'];
+
+        // 4. iterate over the array, logging a value each time
+        fruits.forEach((fruit) => {
+          console.log(fruit);
+        });
+        // 'apple', 'banana', 'orange'
+
+        // 5. write a function which removes a fruit from the array
+        // and call it, then log out the fruit array
+        function removeFruit(name) {
+          const i = fruits.indexOf(name)
+          fruits.splice(i, 1)
+        }
+
+        removeFruit('banana');
+        console.log(fruits)
+        // ['apple', 'orange']
+    </code></pre>
+
+    <p>We can access array methods the exact same way we're used to in browser based/front-end JavaScript. All of the prototype methods that we've used in browser based JS are still available to us.</p>
+
+    <h4>Note:</h4>
+    <p>You'll notice in Repl anytime we make a change the code is run for us. When working on your local machine, you'll need to run the code yourself.<p>
+        This can be done by opening up your terminal, navigating to the directory with the file, and typing <span class="snippet">node ./index.js</span>. You'll then see the output in your terminal.
+
+
+    <h2 class="accent" id="express">Express Library</h2>
+    <p>One of the most popular use-cases for NodeJS is creating web servers.</p>
+    <p>A web server is software which can accept and parse incoming requests (http/https). Generally it will accept an incoming request, and respond to that request with some data.<p>
+    <p>If you've ever interacted with a public API, you've interacted with a web server. </p>
+
+    <p>NodeJS has a standard <a href="https://nodejs.org/api/http.html" target="_blank">HTTP library</a> which allows us to create a server.
+        However, we're going to be using popular lightweight HTTP library called <a href="https://expressjs.com/" target="_blanl">Express</a>. Express makes working with NodeJS's HTTP package more streamlined by providing us easy methods to access and respond to incoming requests to our web server.</p>
+
+    <h3 class="hook" id="creating_our_first_app">Creating our First Application</h3>
+    <p>In order to create a web server, we must first make use of the Express library. <p>
+
+    <p>Go ahead an open this <a href="https://repl.it/@GarrettLevine/juno-express-101">starter Repl</a>, and fork it so you have your own copy.</p>
+
+    <p>Here is the first difference we'll see between front-end JavaScript and NodeJS. We want to import the Express library, and so we'll make use of the <span class="snippet">require</span> syntax.</p>
+
+    <pre><code class="js">
+        const express = require('express');
+    </code></pre>
+
+    <p>What's this <span class="snippet">require</span> word? Why can't we use <span class="snippet">import</span> syntax?</p>
+
+    <p><a href="https://nodejs.org/en/knowledge/getting-started/what-is-require/">Require</a> is part of the standard library of NodeJS and allows us to import other modules into our code (either our own other files, or third-party libraries). Unfortunately we don't have access to import syntax in standard NodeJS. Import syntax is available to us in most front-end frameworks because the code we write there is being transpiled, but we aren't transpiling our code here. Instead of import we use require syntax, but it operates in very similar ways.</p>
+
+    <p>Now that we've required <span class="snippet">express</span>, lets use express to create our first express application!
+
+    <pre><code class="js">
+        // 1. import express library
+        const express = require('express');
+
+        // 2. create an express application
+        const app = express();
+    </code></pre>
+
+    <p>What are we doing above? After we import express, we are using the express package to create an express 'application'.</p>
+    <p>This 'application' has a bunch of methods available to it, but the most important thing to get our application started is to tell the express app to listen on a port.</p>
+    <pre><code class="js">
+        // 3. configure express to listen on a port
+        // once it successfully listens on that port
+        // log something out
+        app.listen('8080', () => {
+            console.log('listening on port 8080');
+        });
+    </code></pre>
+    <p>You'll see the <span class="snippet">.listen</span> method takes two arguments, the first argument is the port to listen on, and the second argument is a callback function to execute once our application is successfully listening on this port.</p>
+    <p>Right now, we're just getting it to log out that we are listening on port 8080.</p>
+
+    <p>In your Repl, make sure to hit RUN at the top, and you'll see the code executes an the server begins running.</p>
+
+    <img src="./assets/repl-express-app-101.png" alt="a screenshot of our current view of Repl" aria-hidden="true">
+
+    <p>In the bottom right of the screen, we can see our terminal and it's output ('listening on port 8080'). At the top right we can see a browser window which says <span class="snippet">Cannot GET /</span>.</p>
+
+    <p>Our application is running! But what is this 'error' we're getting in the browser window? Our server is running, but our application doesn't have an 'endpoint' to respond with any data to our request.
+            What Request is being run? Well everytime the browser loads a page it's make a request to a webserver, and the webserver is configured to respond with HTML.
+    <p>To get some data to show up we'll need to add an 'endpoint' to return respond to the request from our webserver. Let's add one.<p>
+
+
+    <h3 class="hook" id="endpoint">Making an Endpoint</h3>
+    <p>An endpoint can be thought of a channel to access our web server. To understand how to add an endpoint to our application, it's important to go over some standard concepts of REST web servers.</p>
+
+    <p>REST stands for <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">Representational State Transfer</a>, and it speaks to a set of rules and conventions that we will be using when designing our application. One of the two important aspects of a RESTful API are the HTTP methods and the status codes we choose to respond with.
+
+    <h3 class="hook" id="httpmethods">HTTP Methods</h4>
+
+    <p>There are <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods" target="_blank">9 different request methods</a>, but we'll be talking about 2 specifically. The GET and the POST Methods.</p>
+
+    <h4>GET</h4>
+    <p>This is used when requesting a specific resource, ie; getting a list of items, or a single item by it's ID.</p>
+
+    <h4>POST</h4>
+    <p>This is used when creating a new resource, ie; adding a new note to a todo list.</p>
+
+    <!-- <h4>POST</h4>
+    <p>this is used when updating an existing resource, ie; updating the text of a note.</p>
+
+    <h4>DELETE</h4>
+    <p>this is used when removing an existing resource, ie; deleting the a note.</p> -->
+
+    <p>Let's add a <span class="snippet">GET</span> request to our application. After we've declared our express app, we can add an endpoint to our app make use of the <span class="snippet">.get</span> method!
+    <pre><code class="js">
+        const app = express();
+
+        app.get('/', (request, response) => {
+
+        });
+    </code></pre>
+    <p>The above code changes our web server to accept <span class="snippet">GET</span> requests at the base route of <span class="snippet">/</span>.
+            The first argument of the .get method is the endpoint we want to establish, and the second argument is a callback function to execute once that route is 'hit'.</p>
+    <p>You'll notice the callback function defines two parameters for arguments that are provided when the callback is executed: <span class="snippet">request</span> and <span class="snippet">response</span>. These are two objects which give us access to a lot of information about the incoming request from the user and the way in which we can respond to that request.</p>
+
+    <p>For now, lets respond with some HTML. To our code add...</p>
+
+    <pre><code>
+        app.get('/', (request, response) => {
+            response.send(`&#60;h1>Hello World&#60;/h1>`);
+        });
+    </code></pre>
+
+    <p>The <span class="snippet">response</span> object that is passed into this callback function allows us to respond to the request using the <span class="snippet">.send()</span> method.</p>
+    <p>This method accepts a string, an object, or HTML, sending that data back to the requester. If you restart your Repl server, you'll see that this HTML now appears in the browser in the top right.</p>
+    <code class="snippet">
+        <p>Note:</p>
+        <p>We need to restart our Repl server manually now because there is always a process running, our express application.</p>
+    </code>
+
+    <p>You should see the HTML in the browser in the top right of the Repl window.</p>
+    <img src="./assets/repl-express-app-101-html.png" alt="a screenshot of our current view of Repl featuring HTML" aria-hidden="true">
+
+    <p>We can also send back a JSON response from this request instead of a HTML string.<p>
+
+    <p>This is useful when creating an API, because often times we want to respond with data and not an HTML string. Because the <span class="snippet">.send()</span> method is really flexible, we can provide it a javascript object and it will convert that to JSON for us.</p>
+    <p>Let's try it out!</p>
+
+    <p>Let's add a new GET endpoint to our application.</p>
+    <p>After our previous endpoint, we can use the <span class="snippet">.get()</span> method again to add another endpoint as long as the path is different than an existing endpoint.
+    <p>Let's write a GET endpoint for <span class="snippet">'/data'</span>, and return a hello world message in JSON.</p>
+
+    <pre><code class="js">
+        // 2.b Add a get endpoint to respond with JSON.
+        app.get('/data', (request, response) => {
+            response.send({ message: 'hello world' });
+        });
+    </code></pre>
+
+    <p>Restart the Repl so the changes take effect.</p>
+    <p>You'll notice that we're still seeing the old HTML message though. That's because we now need to make a <span class="snippet">GET</span> request to <span class="snippet">/data</span>, not  <span class="snippet">/</span>.</p>
+    <p> To do this, we'll now make use of <em>Insomnia</em> to show us any responses beyond a <span class="snippet">GET / </span>.
+
+    <h3 class="hook" id="insomnia">Working with Insomnia</h3>
+    <p>Go ahead an open your Insomnia applicaton. Insomnia is a great little tool which allows a lot of customization. If you're interested in learning more about Insomnia, head over to their site to <a href="https://support.insomnia.rest/">check out more info</a>.</p>
+    <p>We're going to create our first request by clicking the dropdown and then the `New Request` button.</p>
+    <img src="./assets/insomnia-empty-view.png" alt="a screenshot of our current view of Repl featuring HTML" aria-hidden="true">
+    <p>It will prompt you to name the request, so go ahead and name it something like 'get message'.</p>
+    <p> Next, we're going to copy and paste the url of our app on REPL into this URL bar. It should look something like <span class="snippet">https://juno-express-101--{{YOUR ACCOUNT}}.repl.co</span>.</p>
+    <p>If you press the send button, you should see the HTML returned to you just like on the REPL site. Pretty cool!</p>
+    <p>Now, let's add <span class="snippet">/data</span> to the end of the url so we hit our other endpoint.</p>
+    <img src="./assets/insomnia-hello-world.png" alt="a screenshot of our current view of Repl featuring HTML" aria-hidden="true">
+    <p>Prefect! Now we know that our application is working, and we can see that we recieve the JSON back from the server.</p>
+    <p>When you're a full-stack developer building a web server, it's generally much faster to use a tool like Insomnia to debug/test your applicaiton than it is to write a whole front-end UI, so we recommend getting comfy with a tool like this.</p>
+
+    <h2 class="hook" id="createanapp">Creating an App</h2>
+
+    <p>We're going to work through creating a really minimal note application.</p>
+    <p>Take a look at <a href="https://repl.it/@GarrettLevine/juno-express-notes">this starter repl</a> and fork it to your own account. A few things have been added, so let's take a look at the code in here.</p>
+    <pre><code class="js">
+        // import the express library
+        const express = require('express');
+        const uuid = require('uuid');
+
+        // import the notes from our data file.
+        const notes = require('./data');
+
+        // create an express application
+        const app = express();
+
+        // respond with all of our notes
+        app.get('/notes', (request, response) => {
+            response.send(notes);
+        });
+
+
+        app.use('/', express.static('public'))
+
+        // have the express application listen on a port.
+        app.listen(8080, () => {
+            console.log('listening on port 8080')'
+        });
+    </code></pre>
+    <p>Firstly, we've added a some starter data on <span class="snippet">ln: 6</span>.</p>
+
+    <p>This represents out 'database'. We won't be going over integrating with a database in this lesson, but generally your information is stored in a permanent state.</p>
+
+    <p>For this lesson, it will be stored in memory and so it will not be permanent.</p>
+
+    <p>You'll notice that there is an endpoint of <span class="snippet">GET /notes</span> .</p>
+
+    <p>Similar to our previous example when we sent back data on the <span class="snippet">/data</span> endpoint (the JSON), we are sending back the data from the pre-loaded notes.</p>
+
+    <p>Lastly, before we listen on the port, we've added some curious method.</p>
+
+    <p><span class="snippet">app.use('/', express.static('public'))</span> is allowing our application to serve a whole directory to the user - you'll notice it's doing this because we're able to see an HTML file when we make a <span class="snippet">GET /</span> request to our server.</p>
+
+    <p><span class="snippet">app.use</span> allows us to apply what's called <a href="https://expressjs.com/en/guide/using-middleware.html">middleware</a> to our express application. We won't explore middleware in this lesson, but we can make use of the <span class="snippet">express.static</span> middleware to staticly serve a directory to our requester.</p>
+
+    <p>We are telling this middleware to serve the <span class="snippet">public</span> folder, which currently has an <span>index.html</span> file in it.  As you can see, when you make a request to our node server at <span class="snippet">GET /</span>, we see an website in our browser.</p>
+
+    <h3 classes="hook" id="postendpoint">Adding a POST endpoint</h3>
+    <p>Now that we have a more robust application, let's add a new endpoint. We want to be able to create new notes in our application.</p>
+    <p>To do so, we should make use of the POST HTTP method. </p>
+
+
+    <p>Similar to the <span class="snippet">.get()</span> method, express allows us to add an endpoint using the <span class="snippet">.post()</span> method. Let's add one at the <span class="snippet">POST /notes</span> route like so;</p>
+    <pre><code class="js">
+        // 1. Write POST endpoint to create a new note
+        app.post('/notes', (request, response) => {
+
+        });
+    </code></pre>
+
+    <p>This looks really similar to our GET endpoint! It even exists at the same route of <span class="snippet">/notes</span>. How can we have two of the same routes?</p>
+    <p>This is because while they are the same URL route, we are writting two different requests. One is a GET request, and one is a POST request. When the server recieves one of these two requests, express will send the incoming request to the appropriate endpoint.</p>
+
+
+    <p>Just like our GET request we have access to the <span class="snippet">request</span> and <span class="snippet">response</span> - but now we're going to need to make use of a new value off of the <span class="snippet">request</span> object. </p>
+
+    <p>Because we're creating a new note, our sever needs to be able to read data off of incoming request and add that data to the existing notes array.</p>
+
+    <p>To do this, we're going to be making use of <em>query paramaters</em>.</p>
+
+    <p>Have you ever examined a URL and seen <span class="snippet">https://google.com/?key=value&thing=potatos</span>?</p>
+
+    <p>This is an example of query parameters being sent to a server.</p>
+
+    <p>Everything after the <span class="snippet">?</span> is a query parameter, and each parameter is separated by an <span class="snippet">&</span> .</p>
+
+    <p>In Express, we're able to access the query parameters off the the <span class="snippet">request</span> object using it's <span class="snippet">.query</span> value, and then the key we're expecting to be there.</p>
+
+    <p>Let's grab the query parameters in our code.</p>
+    <pre><code class="js">
+        // 1. Write POST endpoint to create a new note
+        app.post('/notes', (request, response) => {
+            const text = request.query.text;
+            const author = request.query.author;
+            console.log({ text, author });
+            response.send({ text, author });
+        });
+    </code></pre>
+    <p>You can see above that we are able to capture the values of an incoming request - but how do we actually send that?</p>
+
+    <p>You'll notice if you type <span class="snippet">/notes?text=my_note_text&author=me</span> in to the browser OR make an request <em>Insomnia</em>, we don't see these values logged in our terminal.</p>
+
+    <p>This is because the browser makes a GET request. Remember, we've written this logic for a POST request</p>
+
+    <p>In order to test this out, we'll need to make a request using some help. Let's head back over to <em>Insomnia</em>.</p>
+
+    <p>In <em>Insomnia</em>, we can create a new request and set it to POST.</p>
+    <img src="./assets/insomnia-create-post.png" alt="a screenshot of creating a post request in Insomnia" aria-hidden="true">
+
+    <p>Next, let's make sure our URL is correct. It should be <span class="snippet">https://juno-express-notes--{YOUR-ACCOUNT-NAME}.repl.co/notes</span></p>
+
+    <p>Lastly, we can make use of the query tab to make sure we're setting the query parameters as expected. </p>
+
+    <img src="./assets/insomnia-post-query-params.png" alt="a screenshot of adjusting the query paramaters in Insomnia" aria-hidden="true" />
+
+    <p>And now that we're making a POST request to this endpoint, we can see the <span class="snippet">console.log()</span> is working in our Repl terminal <em>and</em> we receive the response to our request in Insomnia.</p>
+    <img src="./assets//insomnia-post-req-resp.png" alt="a screenshot of our POST response in Insomnia" aria-hidden="true" />
+    <p>Now let's use this incoming data to create a new note in our array. </p>
+    <p>We'll use similar logic to our little warm up earlier, but instead of appending fruits to an array, we can append a new not to the array. Let's give it a try, we want to;</p>
+    <ol>
+    <li>create a new note object with our fields (don't forget the id field, we'll make use of the UUID package for this using the uuid.v4() method)</li>
+    <li>append it to our existing notes array</li>
+    <li>respond to the request with the new note</li>
+    </ol>
+    <pre><code class="js">
+        // 1. Write POST endpoint to create a new note
+        app.post('/notes', (request, response) => {
+            const text = request.query.text;
+            const author = request.query.author;
+
+            const newNote = {
+                id: uuid.v4(),
+                text: text,
+                author: author,
+            };
+
+            notes.push(newNote);
+            response.send(newNote);
+        });
+    </code></pre>
+    <p>With the above code, we'll make a request to hit our endpoint using Insomnia.</p>
+    <p>If we get back a new note as a response, we can verify that this worked be calling our other endpoint to list all of our notes at GET /notes .</p>
+    <p>To do this, let's head back to Insomnia and make a new request called 'Get Notes'. Remember to set the appropriate URL and ensure it's a GET request.</p>
+
+    <p>We've made a POST request. We can successfully make a new item on our node server, and then list it out using a GET request.</p>
+
+    </p>There's a lot more that we could do on the node server, but let's jump to our small Front-End application to see how all of this is working!</p>
+
+    <h3 classes="hook" id="frontendrequests">Making Requests from our Front-End</h3>
+    <p>We have in front of us a small front-end component to this note web service we just wrote!</p>
+    <img src="./assets/front-end-app.png" alt="a screenshot of the front-end portion of our note project" aria-hidden="true" />
+
+    <p>You'll notice that it's already working out the gate with the server we just wrote.</p>
+    <p>We're going to review the code that's been written to hook it up to the server, as a lot of the concepts ought to be review.</p>
+    <p>Open the <span class="snippet">pubic/index.js</span> file on our Repl. This houses all of our front-end JavaScript code which has the ability to interact with browser APIs.
+            This is being served alongside the <span class="snippet">index.html</span> thanks to that express middlware we covered previously.</p>
+
+    <p>How are getting the notes from our web server? Let's take a look at this <span class="snippet">getNotes()</span> functon.</p>
+    <pre><code class="js">
+        function getNotes() {
+            // make a request to our GET /notes endpoint
+            fetch('/notes')
+
+              // parse the response and get the JSON
+              .then((response) => response.json())
+
+              // the notes as a json is available to us
+              .then((notes) => {
+                const noteNode = document.getElementById('noteList');
+                noteNode.innerHTML = '';
+
+                // for each note returned, template it on to the page
+                notes.forEach((note, i) => {
+                  const isEven = i % 2 === 0;
+                  const noteEl = templateNote(note, isEven);
+                  noteNode.appendChild(noteEl);
+                })
+              })
+              .catch((err) => console.error(err));
+          }
+    </code></pre>
+    <p>We can see above that we're able to make requests to our web server without the address that we used in Insomnia. Why is this?</p>
+    <p>When we make requests to our web server, we're able to treat it as the same domain because our web server is the one who is serving this HTML and JavaScript.</p>
+
+    <p>Let's take a look at the code that we're calling when we create a note.</p>
+    <pre><code class="js">
+        function createNote() {
+            // get the input elements from the page
+            const text = document.getElementById('noteText');
+            const author = document.getElementById('noteAuthor');
+
+            // make a post request to our web server
+            fetch(`/notes?text=${text.value}&author=${author.value}`, {
+                method: 'POST',
+            })
+                .then((resp) => resp.json())
+                .then((note) => {
+                    text.value = '';
+                    author.value = '';
+                })
+                .catch(err => console.log(err));
+        }
+    </code></pre>
+
+    <p>The function above grabs the values of the inputs and passes a URL like we used in our Insomnia request using a template literal to the fetch request (<span class="snippet">/notes?text=${text.value}&author=${author.value}</span>)</p>
+    <p>Once we get the response from the server, we are setting the values of the inputs to empty for a better user experience.</p>
+
+    <p>Lastly, this function is called in an event listener we've bound to our <span class="snippet">&#60/form></span> element. Let's check out that code.</p>
+    <pre><code class="js">
+        // wait for the page to load
+        document.addEventListener('DOMContentLoaded', () => {
+            document
+              // get the form by ID
+              .getElementById('noteForm')
+              // add an event listener
+              .addEventListener('submit', (e) => {
+                e.preventDefault();
+                // use a promise to make sure
+                new Promise((resolve, reject) => {
+                  // first we createthe note
+                  resolve(createNote());
+                })
+                .then(() => {
+                  // then we get all the notes
+                  getNotes();
+                });
+            });
+          });
+    </code></pre>
+    <p>With the above we're making sure that when the form is submitted we are</p>
+    <ol>
+        <li>creating the new note with our POST endpoint</li>
+        <li>getting ALL the notes from out GET endpoint</li>
+    </ol>
+    <p>We're making use of a promise to ensure that things occure <em>exactly</em> in that order.</p>
+
+    <p>And we've done it! We've got ourselves an application which makes use of a GET endpoint and a POST endpoint that we've written on our own!</p>
+
+    <h4>Stretch Challenges</h4>
+    <p>If you're looking to add more features to this application, think of ways to get add a <snap class="snippet">DELETE</snap> endpoint to remove a single note,
+            and a <span class="snippet">PUT</span> endpoint to update the text of single note.</p>
+    <p>This will require using two new methods in express (<span class="snippet">.delete()</span> and/or <span class="snippet">.put())</span> and array logic this we
+        went over in our warm up.</p>
+
+    <div id="popUpOpen">
+        <h2 class="heading" id="learnMore">Ready to Learn More?</h2>
+        <p>This was a small taste of what the Full-Stack Masterclass covers. We have not covered;</p>
+        <ul>
+            <li>Working with React in a full-stack app</li>
+            <li>PUT and DELETE endpoints</li>
+            <li>Validating requests</li>
+            <li>Error handling on our server</li>
+            <li>Interacting with a Database</li>
+            <li>Deploying applications</li>
+            <li>Project organization and best practices</li>
+        </ul>
+        <p>If thes topics excite you, join our next <a href="https://junocollege.com/course/full-stack-masterclass" target="_blank">Full-Stack Masterclass</a> courses!</p>
+
+        <h3>Extra Resources</h3>
+        <ul>
+            <li>Check out out <a href="https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4" target="_blank">this tutorial on working with MongoDb</a></li>
+        </ul>
+
+        <h3>Thank you for joining us!</h3>
+
+    </div>
+</section>
+</main>
+
+<div class="footer-rip">
+    <img src="assets/footer-rip.png" aria-hidden="true">
+</div>
+<footer class="exercise hook" id="feedback">
+    <div class="wrapper">
+        <h3>How likely would you be to recommend this workshop to a friend?</h3>
+        <p>1 is absolutely not 😕, and 10 is absolutely 😍</p>
+        <div id="question" class="question">
+            <button id="1" class="answer">1</button>
+            <button id="2" class="answer">2</button>
+            <button id="3" class="answer">3</button>
+            <button id="4" class="answer">4</button>
+            <button id="5" class="answer">5</button>
+            <button id="6" class="answer">6</button>
+            <button id="7" class="answer">7</button>
+            <button id="8" class="answer">8</button>
+            <button id="9" class="answer">9</button>
+            <button id="10" class="answer">10</button>
+        </div>
+        <p class="thanks hidden">Thank you for your input!✨</p>
+    </div>
+</footer>
+
+<div class="popup hidden" id="popup">
+    <div class="form">
+        <button class="close"><i aria-label="Close" class="fas fa-times"></i></button>
+        <h3>How likely would you be to recommend this workshop to a friend?</h3>
+        <p>1 is absolutely not 😕, and 10 is absolutely 😍</p>
+        <div class="question">
+            <button id="1" class="answer">1</button>
+            <button id="2" class="answer">2</button>
+            <button id="3" class="answer">3</button>
+            <button id="4" class="answer">4</button>
+            <button id="5" class="answer">5</button>
+            <button id="6" class="answer">6</button>
+            <button id="7" class="answer">7</button>
+            <button id="8" class="answer">8</button>
+            <button id="9" class="answer">9</button>
+            <button id="10" class="answer">10</button>
+        </div>
+        <p class="thanks hidden">Thank you for your input!✨</p>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+<script src="script.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
